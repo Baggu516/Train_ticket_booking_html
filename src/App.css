@@ -10,3 +10,20 @@
 .MuiInputBase-input  {
   height: 10px !important;
 }
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #DDD;
+}
+
+tr:hover {background-color: #D6EEEE;}
+button{
+  background-color: rgb(43, 0, 255);
+  border-radius: 5px;
+  color: aliceblue;
+}

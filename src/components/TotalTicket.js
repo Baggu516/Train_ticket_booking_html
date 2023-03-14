@@ -108,6 +108,7 @@ const handleEvent= (
   ) => {
     setOpen(true)
     setN(params.row.id-1)
+    console.log(params.row.id,"clikkkkkkkkkkkkkk")
   // setMessage();
 };
 const [fc,SetFc]=useState([])
@@ -283,10 +284,11 @@ useEffect(()=>{
     },
 
   ]
-
+  console.log(availableData,props?.availableData)
   return (
-    <span style={{ height: 400, width: '90%' }}>
-      {props.value==0&&<DataGrid
+    <>
+    {/* // <span style={{ height: 400, width: '90%' }}> */}
+      {/* {props.value==0&&<DataGrid
         rows={availableData}
         sx={{height:'65vh',width:'76vw'}}
         // onRowClick={handleEvent}
@@ -296,8 +298,35 @@ useEffect(()=>{
           toolbar: GridToolbar,
         }}
         rowsPerPageOptions={[1]}
-      />}
-      {props.value===1&&<DataGrid
+      />} */}
+      
+      {props.value==0&&<table style={{width:"100%"}}>
+
+                 <tr>
+                 {columns.map(item=>(
+                   
+                    <th>{item.headerName}</th>
+                   
+                ) )} 
+             </tr>
+        <tbody>
+        {availableData.map(emp => (
+                            <tr key={emp.id}>
+                              <td>{emp.id}</td>
+                              <td>{emp.trainName}</td>
+                              <td>{emp.date}</td>
+                                <td>{emp.source}</td>
+                                <td>{emp.destination}</td>
+                                <td>{emp.sourcetime}</td>
+                                <td>{emp.endingtime}</td>
+                                <td>{emp.price}</td>
+                                <td> <button onclick={handleEvent}>Book</button></td>
+                            </tr>
+                        ))}
+        </tbody>
+              </table> }
+               
+      {/* {props.value===1&&<DataGrid
       sx={{height:'65vh',width:'76vw'}}
       rows={booked}
       columns={fc}
@@ -307,7 +336,23 @@ useEffect(()=>{
       }}
       pageSize={5}
       rowsPerPageOptions={[1]}
-    />}
+    />} */}
+       {/* {props.value==0&&
+      <table style="width:100%">
+        <thread>
+                 {columns.map((item,i)=>
+                    <tr>
+                    <th>{item.headerName}ji</th>
+                    </tr>
+                    
+                  )} 
+        </thread>
+        <tbody>
+
+        </tbody>
+            
+              </table> 
+               }
 
       <Dialog
         fullScreen={fullScreen}
@@ -370,7 +415,7 @@ useEffect(()=>{
         <input type="text" placeholder="Enter Name" name="name" onChange={changeHandler}></input><br/>
         <input type="text" placeholder="Email" name="email" onChange={changeHandler}></input><br/>
         <input type="text" placeholder="phone number" name="phoneNumber" onChange={changeHandler}></input><br/> */}
-        <DialogActions>
+        {/* <DialogActions>
           <Button autoFocus id="submit btn"
                   variant="contained"
                   className="book" type='submit'>
@@ -383,7 +428,7 @@ useEffect(()=>{
               </Button>
           </DialogActions>
         </form>
-      </Container>
+      </Container> */}
       <br/>
 
       {/* <DialogActions>
@@ -394,8 +439,8 @@ useEffect(()=>{
             Cancel
           </Button>
         </DialogActions> */}
-      </Dialog>
-
-    </span>
+      {/* </Dialog> */}
+</>
+    // </span>
   );
 }

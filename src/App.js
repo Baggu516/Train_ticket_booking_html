@@ -307,6 +307,15 @@ function App() {
     </span>
    
       </Container>
+      <h1>hello</h1>
+      <table>
+        <thead>
+             <tr>
+             <th>ghjkkk
+             </th>
+             </tr>
+        </thead>
+      </table>
       
       {/* <store.Provider value={globaldata}>
         {/* <TotalTicket/> 
