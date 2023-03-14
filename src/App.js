@@ -307,7 +307,7 @@ function App() {
     </span>
    
       </Container>
-      <h1>hello</h1>
+      {/* <h1>hello</h1>
       <table>
         <thead>
              <tr>
@@ -315,7 +315,7 @@ function App() {
              </th>
              </tr>
         </thead>
-      </table>
+      </table> */}
       
       {/* <store.Provider value={globaldata}>
         {/* <TotalTicket/> 

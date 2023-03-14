@@ -58,7 +58,7 @@ export default function DataTable(props) {
   //   {
   //     field: 'fullName',
   //     headerName: 'Full name',
-  //     description: 'This column has a value getter and is not sortable.',
+  //     description: 'This columns has a value getter and is not sortable.',
   //     sortable: false,
   //     width: 160,
   //     valueGetter: (params) =>
@@ -72,8 +72,8 @@ export default function DataTable(props) {
   };
   const theme = useTheme();
 
-  let bookedColumns = columns
-  bookedColumns = [...bookedColumns,
+  let bookedcolumnss = columns
+  bookedcolumnss = [...bookedcolumnss,
     { field: 'name', headerName: 'Passenger Name', width: 150 ,align:'center'},
     { field: 'email', headerName: 'Passenger Email', width: 200,align:'center' },
     { field: 'phoneNumber', headerName: 'Passenger Phone Number',type:"number",width:90,align:'center' },
@@ -113,7 +113,7 @@ const handleEvent= (
 };
 const [fc,SetFc]=useState([])
 useEffect(()=>{
-  const f = bookedColumns.filter((c)=>{
+  const f = bookedcolumnss.filter((c)=>{
     return c.field!="button"
   }
     )
@@ -292,7 +292,7 @@ useEffect(()=>{
         rows={availableData}
         sx={{height:'65vh',width:'76vw'}}
         // onRowClick={handleEvent}
-        columns={columns}
+        columnss={columnss}
         pageSize={5}
         slots={{
           toolbar: GridToolbar,
@@ -303,11 +303,20 @@ useEffect(()=>{
       {props.value==0&&<table style={{width:"100%"}}>
 
                  <tr>
-                 {columns.map(item=>(
+                 <th>{columns[0]?.headerName}</th>
+                 <th>{columns[1]?.headerName}</th>
+                 <th>{columns[2]?.headerName}</th>
+                 <th>{columns[3]?.headerName}</th>
+                 <th>{columns[4]?.headerName}</th>
+                 <th>{columns[5]?.headerName}</th>
+                 <th>{columns[6]?.headerName}</th>
+                 <th>{columns[7]?.headerName}</th>
+                 <th>{columns[8]?.headerName}</th>
+                 {/* {columnss.map(item=>(
                    
-                    <th>{item.headerName}</th>
+                    
                    
-                ) )} 
+                ) )}  */}
              </tr>
         <tbody>
         {availableData.map(emp => (
@@ -320,7 +329,9 @@ useEffect(()=>{
                                 <td>{emp.sourcetime}</td>
                                 <td>{emp.endingtime}</td>
                                 <td>{emp.price}</td>
-                                <td> <button onclick={handleEvent}>Book</button></td>
+                                <td><button  onClick={()=>{ setOpen(true)
+                    setN(emp.id-1)
+                  }}>Book</button></td>
                             </tr>
                         ))}
         </tbody>
@@ -329,7 +340,7 @@ useEffect(()=>{
       {/* {props.value===1&&<DataGrid
       sx={{height:'65vh',width:'76vw'}}
       rows={booked}
-      columns={fc}
+      columnss={fc}
       // onRowClick={handleEvent}
       slots={{
         toolbar: GridToolbar,
@@ -340,7 +351,7 @@ useEffect(()=>{
        {/* {props.value==0&&
       <table style="width:100%">
         <thread>
-                 {columns.map((item,i)=>
+                 {columnss.map((item,i)=>
                     <tr>
                     <th>{item.headerName}ji</th>
                     </tr>
@@ -352,7 +363,41 @@ useEffect(()=>{
         </tbody>
             
               </table> 
-               }
+                 */}
+                 {props.value==1&&<table style={{width:"100%"}}>
+
+                    <tr>
+                    {/* <th>{columns[0]?.headerName}</th>
+                    <th>{columns[1]?.headerName}</th>
+                    <th>{columns[2]?.headerName}</th>
+                    <th>{columns[3]?.headerName}</th>
+                    <th>{columns[4]?.headerName}</th>
+                    <th>{columns[5]?.headerName}</th>
+                    <th>{columns[6]?.headerName}</th>
+                    <th>{columns[7]?.headerName}</th> */}
+                    {fc.map(item=>(
+                      <th>{item.headerName}</th>
+                         
+                    ) )} 
+</tr>
+<tbody>
+{booked.map(emp => (
+           <tr key={emp.id}>
+             <td>{emp.id}</td>
+             <td>{emp.trainName}</td>
+             <td>{emp.date}</td>
+               <td>{emp.source}</td>
+               <td>{emp.destination}</td>
+               <td>{emp.sourcetime}</td>
+               <td>{emp.endingtime}</td>
+               <td>{emp.price}</td>
+               <td>{emp.name}</td>
+               <td>{emp.email}</td>
+               <td>{emp.phoneNumber}</td>
+           </tr>
+       ))}
+</tbody>
+</table> }
 
       <Dialog
         fullScreen={fullScreen}
@@ -376,7 +421,7 @@ useEffect(()=>{
               onClick={handleClose}
               />
           </span>
-        <form onSubmit={BookedDetails}>
+        <form >
         <DialogContent>
         <Grid container spacing={2}>
           {
@@ -415,31 +460,37 @@ useEffect(()=>{
         <input type="text" placeholder="Enter Name" name="name" onChange={changeHandler}></input><br/>
         <input type="text" placeholder="Email" name="email" onChange={changeHandler}></input><br/>
         <input type="text" placeholder="phone number" name="phoneNumber" onChange={changeHandler}></input><br/> */}
-        {/* <DialogActions>
-          <Button autoFocus id="submit btn"
+        {/* <DialogActions> */}
+        <span style={{ marginLeft:"400px" }}>
+          <button onClick={BookedDetails}> Book</button>
+        </span>
+        <span style={{ marginLeft:"10px" }}>
+          <button onClick={handleClose}> Cancel</button>
+        </span>
+          {/* <Button autoFocus id="submit btn"
                   variant="contained"
                   className="book" type='submit'>
                 Book
               </Button>
               <Button id="submit btn"
                   variant="contained"
-                  className="book" onClick={handleClose} autoFocus>
+                  className="book"  autoFocus>
                 Cancel
-              </Button>
-          </DialogActions>
+              </Button> */}
+          {/* </DialogActions> */}
         </form>
-      </Container> */}
+      </Container>
       <br/>
-
-      {/* <DialogActions>
+{/* 
+      <DialogActions>
           <Button autoFocus onClick={BookedDetails}>
             Book
           </Button>
           <Button onClick={handleClose} autoFocus>
             Cancel
           </Button>
-        </DialogActions> */}
-      {/* </Dialog> */}
+        </DialogActions>*/}
+      </Dialog> 
 </>
     // </span>
   );
