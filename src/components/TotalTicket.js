@@ -423,13 +423,13 @@ useEffect(()=>{
           </span>
         <form >
         <DialogContent>
-        <Grid container spacing={2}>
+        {/* <Grid container spacing={2}> */}
           {
             inputBookingFeilds.map(inputFeilds=>
               (
               <>
-              <Grid item xs={12} sm={12}>
-                <TextField
+              {/* <Grid item xs={12} sm={12}> */}
+                <input
                   variant={inputFeilds.variant}
                   required={inputFeilds.required}
                   fullWidth={inputFeilds.fullWidth}
@@ -445,11 +445,11 @@ useEffect(()=>{
                   placeholder={inputFeilds.placeholder}
                   onChange={changeHandler }
                 />
-              </Grid>
+              {/* </Grid> */}
               </>
               ))
           }
-        </Grid>
+        {/* </Grid> */}
         </DialogContent>
         {/* <input value={Data?.rows[n]?.trainName} disabled></input>
         <input value={Data?.rows[n]?.source} disabled></input>
