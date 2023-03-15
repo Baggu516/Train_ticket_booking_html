@@ -74,6 +74,7 @@ function App() {
 
   const handleDateOfJourneyChange = (event) => {
     setDateOfJourney(event.target.value);
+    console.log(event.target.value)
   };
 
   const handleSubmit = (event) => {
@@ -186,141 +187,128 @@ function App() {
   },[value])
   
   return (
-    <>
    
-      <Container fixed sx={{hieght:'100vh',width:'85vw'}}>
-      <Toolbar>
-        <IconButton>
-        <DirectionsSubwayFilledIcon/>
-        </IconButton>
-        <Typography variant='h6'>
-          Railway Ticket Booking
-        </Typography>
-      </Toolbar>
-      <Divider/>
-      <Box sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <span style={{display:'flex'}}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+      <div style={{hieght:'100vh',width:'85vw',marginLeft:"100px"}}>
+              <div style={{display:"flex"}}>
+                <IconButton>
+                <DirectionsSubwayFilledIcon/>
+                </IconButton>
+                <h3>
+                  Railway Ticket Booking
+                </h3>
+              </div>
+              <Divider/>
+      {/* <Box sx={{ width: '100%' }}> */}
+      {/* <Box sx={{ borderBottom: 1, borderColor: 'divider' }}> */}
+             <div style={{display:'flex',height:"35px"}}>
+        {/* <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
               <Tab label="Available Trains" {...a11yProps(0)} />
                 <Tab label="Booked Tickets" {...a11yProps(1)} />
-        </Tabs>
-        <span  style={{position:'absolute',right:200}}>
-        <IconButton type="button" aria-label="search" onClick={() => Search()}>
-            {<RefreshIcon />}
-        </IconButton>
-          <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
-            <SearchIcon />
-          </IconButton>
-          <InputBase
-            sx={{ ml: 1, flex: 1 ,paddingTop:2}}
-            placeholder="Search For Data"
-            value={searchValue} 
-            inputRef={inputRef}
-            style={{borderBottom:'1px solid black',width:'25vw'}}
-            onChange={(e)=>e?Search(e):null}
-          /> 
-
-        </span>
-     
-
-        </span>
-      </Box>
-      <Box sx={{ width: '100%' }}> 
+        </Tabs> */}
+               <button onClick={()=>setValue(0)}>Available Trains</button>
+               <button onClick={()=>setValue(1)}>Booked Tickets</button>
+               <span  style={{position:'absolute',right:200}}>
+               <IconButton type="button" aria-label="search" onClick={() => Search()}>
+                   {<RefreshIcon />}
+               </IconButton>
+                 <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+                   <SearchIcon />
+                 </IconButton>
+                 <input
+                   sx={{ ml: 1, flex: 1 ,paddingTop:2}}
+                   placeholder="Search For Data"
+                   value={searchValue} 
+                   inputRef={inputRef}
+                   style={{borderBottom:'1px solid black',width:'25vw'}}
+                   onChange={(e)=>e?Search(e):null}
+                 /> 
+       
+               </span>
+               </div>
+               
+      {/* </Box> */}
+      {/* </Box> */}
+               <div style={{ width: '100%' }}> 
         
-        <form onSubmit={handleSubmit}>
-        {/* <form> */}
-          <span style={{display:'flex',margin:"10px",marginLeft:"10px",width:"60%"}}>
-            <span style={{width:"30%"}}>
-            <Autocomplete
-        className="inputFieldSearch"
-        id="start-city"
-        options={['vayalpadu',
-        'hyderabad',
-        'Rajam',
-        'anathapur',
-        'kalikiri',
-        'renigunta',
-        'madanapall',
-        'kakinada',
-        'chennai', ]}
-        freeSolo
-        onChange={handleStartCityChange}
-        renderInput={(params) => (
-          <TextField {...params} label="Start City" variant="outlined" />
-        )}
-      />
-            </span>
-         &nbsp;
+                 <form onSubmit={handleSubmit}>
+                 {/* <form> */}
+                   <span style={{display:'flex',margin:"10px",marginLeft:"10px",width:"60%"}}>
+                     <span style={{width:"30%"}}>
+                     <Autocomplete
+                 className="inputFieldSearch"
+                 id="start-city"
+                 options={['vayalpadu',
+                 'hyderabad',
+                 'Rajam',
+                 'anathapur',
+                 'kalikiri',
+                 'renigunta',
+                 'madanapall',
+                 'kakinada',
+                 'chennai', ]}
+                 freeSolo
+                 onChange={handleStartCityChange}
+                 renderInput={(params) => (
+                   <TextField {...params} label="Start City" variant="outlined" />
+                 )}
+                 ></Autocomplete>
+                     </span>
+                  &nbsp;
        {/* </span> */}
       {/* <span style={{position:'absolute',right:50}}> */}
-      <span style={{width:"30%"}}>
-      <Autocomplete
-        className="inputFieldSearch"
-        id="end-city"
-        options={["madanapalle",
-        "vayalpadu",
-        "madanapalle",
-       "angallu",
-        "Tamilnadu",
-        "chittor",
-        "Bangalore" ,
-        "goa",
-        "madhyapradesh",]}
-        freeSolo
-        onChange={handleEndCityChange}
-        renderInput={(params) => (
-          <TextField {...params} label="End City" variant="outlined" />
-        )}
-      />
-      </span>&nbsp;
-      {/* <span style={{position:'absolute',right:100}}> */}
-      <TextField
-        className="inputFieldSearch"
-        id="date-of-journey"
-        label="Date Of Journey"
-        type="datetime-local"
-        value={dateOfJourney}
-        onChange={handleDateOfJourneyChange}
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />&nbsp;
-      {/* </span> */}
-      {/* <span style={{position:'absolute',right:150}}> */}
-      <Button type="submit" className='inputFieldSearch' variant="contained" color="primary">
-        Search
-      </Button>
-      </span>
-      
-    </form>
-      </Box>
-      <TabPanel value={value}  index={0}>
-        <TotalTicket value={value} availableData={searchData} bookedData={bookedData} stored={stored}/>
-      </TabPanel>
-      <TabPanel value={value}   index={1}>
-        <TotalTicket value={value} bookedData={searchData} stored={stored} />
-      </TabPanel>
-    </Box>
+                  <span style={{width:"30%"}}>
+                  <Autocomplete
+                    className="inputFieldSearch"
+                    id="end-city"
+                    options={["madanapalle",
+                    "vayalpadu",
+                    "madanapalle",
+                   "angallu",
+                    "Tamilnadu",
+                    "chittor",
+                    "Bangalore" ,
+                    "goa",
+                    "madhyapradesh",]}
+                    freeSolo
+                    onChange={handleEndCityChange}
+                    renderInput={(params) => (
+                      <TextField {...params} label="End City" variant="outlined" />
+                    )}
+                  />
+                  </span>&nbsp;
+                  {/* <span style={{position:'absolute',right:100}}> */}
+                  <input
+                    className="inputFieldSearch"
+                    id="date-of-journey"
+                    label="Date Of Journey"
+                    type="datetime-local"
+                    value={dateOfJourney}
+                    onChange={handleDateOfJourneyChange}
+                    // InputLabelProps={{
+                    //   shrink: true,
+                    // }}
+                  />&nbsp;
+                  {/* </span> */}
+                  {/* <span style={{position:'absolute',right:150}}> */}
+                  <button type="submit" className='inputFieldSearch' variant="contained" color="primary">
+                    Search
+                  </button>
+                  </span>
+                  
+                 </form>
+                 </div>
+      <div>
+      {/* <TabPanel value={value}  index={0}> */}
+        {value==0&&<TotalTicket value={value} availableData={searchData} bookedData={bookedData} stored={stored}/>}
+      {/* </TabPanel> */}
+      {/* <TabPanel value={value}   index={1}> */}
+        {value==1&&<TotalTicket value={value} bookedData={searchData} stored={stored} />}
+      {/* </TabPanel> */}
+    </div>
     <span className="footer">
       <Model/>
     </span>
-   
-      </Container>
-      {/* <h1>hello</h1>
-      <table>
-        <thead>
-             <tr>
-             <th>ghjkkk
-             </th>
-             </tr>
-        </thead>
-      </table> */}
-      
-      {/* <store.Provider value={globaldata}>
-        {/* <TotalTicket/> 
-      </store.Provider> */}
-    </>
+    </div>
   );
 }
 

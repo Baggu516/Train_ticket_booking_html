@@ -376,8 +376,7 @@ useEffect(()=>{
                     <th>{columns[6]?.headerName}</th>
                     <th>{columns[7]?.headerName}</th> */}
                     {fc.map(item=>(
-                      <th>{item.headerName}</th>
-                         
+                      <th>{item.headerName}</th> 
                     ) )} 
 </tr>
 <tbody>
